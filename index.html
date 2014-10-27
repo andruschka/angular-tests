@@ -1,0 +1,39 @@
+<html ng-app="tutorialApp">
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container" style="margin-top:50px;">
+      
+      
+      <input type="text" ng-model="search" class="form-control" tabindex="0">
+      <h1 ng-show="search">Suche nach: {{search.toUpperCase()}}</h1>
+      <hr>
+
+      <div ng-controller="ItemsCtrl">
+        <p ng-repeat="item in items | filter:search">
+          {{item.id}} | {{item.name}} | {{item.price}} &euro;
+          <span class="label label-primary" ng-click="cart.addArticle(item);">add</span>
+        </p>
+      </div>
+      
+      <div class="well" ng-controller="CartCtrl">
+
+        <p ng-hide="cart.getItems.length">Warenkorb ist leer</p>
+
+        <!-- TODO -->
+        <p ng-show="cart.getItems.length"> 
+          {{cart.getItems.length}} Artikel im Warenkorb:
+        </p>
+      </div>
+      
+
+
+    </div>
+    <script src="bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+    <script src="bower_components/angularjs/angular.min.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
+  </body>
+</html>
